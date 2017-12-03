@@ -23,6 +23,21 @@ def split_by_whitespace(record):
     return record.strip().split()
 
 
+def last(iterable):
+    ret = None
+    for v in iterable:
+        ret = v
+    return ret
+
+
+def sample_arr(elements, points):
+    n = len(elements)
+    yield elements[0]
+    for i in range(1, n - 1, int(max(1, n / points))):
+        yield elements[i]
+    yield elements[n - 1]
+
+
 def read_input(
     filename,
     records_iterator=readlines,
