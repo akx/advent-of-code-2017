@@ -5,6 +5,10 @@ def yes(value):
     return True
 
 
+def identity(value):
+    return value
+
+
 def compose(*functions):
     def composed(arg):
         for function in functions:
@@ -20,6 +24,10 @@ def imap(fn):
 
 def readlines(fp):
     yield from fp
+
+
+def read_chars(fp):
+    yield from fp.read().strip()
 
 
 def split_by_whitespace(record):
