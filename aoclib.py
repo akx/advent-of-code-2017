@@ -1,6 +1,9 @@
 from functools import wraps, partial
 from operator import truth
 
+def yes(value):
+    return True
+
 
 def compose(*functions):
     def composed(arg):
