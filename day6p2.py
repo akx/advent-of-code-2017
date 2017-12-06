@@ -8,4 +8,5 @@ initial_banks = list(read_input(
 ))[0]
 
 allocations, final_banks = reallocate(initial_banks)
-print(len(allocations))
+first_cycle = allocations.index(tuple(final_banks))
+print(first_cycle, len(allocations), len(allocations) - first_cycle)
