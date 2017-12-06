@@ -11,8 +11,9 @@ const unfold2 = R.curryN(2, (fn, seed) => { // Like R.unfold, but passing the se
 const setIndex = (index, value) => R.set(R.lensIndex(index), value);
 const incrIndex = (index) => R.over(R.lensIndex(index), R.inc);
 const findMaxIndex = (arr) => R.findIndex(R.equals(R.reduce(R.max, 0, arr)))(arr);
-const distStep = (banks, index, remaining) => (remaining <= 0 ? banks : distStep(incrIndex(index)(banks), ((index + 1) % banks.length), remaining - 1));
-const dist = (banks, index) => distStep(setIndex(index, 0)(banks), (index + 1) % banks.length, banks[index]);
+const nextStep = (banks, index) => (index + 1) % banks.length;
+const distStep = (banks, index, remaining) => (remaining <= 0 ? banks : distStep(incrIndex(index)(banks), nextStep(banks, index), remaining - 1));
+const dist = (banks, index) => distStep(setIndex(index, 0)(banks), nextStep(banks, index), banks[index]);
 const distMax = (banks) => dist(banks, findMaxIndex(banks));
 const dup = (n => [n, n]);
 const log = R.tap((obj) => console.log(obj));

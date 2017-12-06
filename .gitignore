@@ -1,2 +1,4 @@
 *.py[cod]
 .idea
+node_modules
+yarn.lock
